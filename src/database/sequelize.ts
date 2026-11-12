@@ -3,7 +3,7 @@ import { env } from '../config/env.js'
 import { logger } from '../config/logger.js'
 
 export const sequelize = new Sequelize(env.DB_NAME, env.DB_USER, env.DB_PASSWORD, {
-  dialect: 'mysql',
+  dialect: 'postgres',
   host: env.DB_HOST,
   port: env.DB_PORT,
   logging: env.DB_LOGGING ? (message) => logger.debug(message) : false,
@@ -14,7 +14,7 @@ export const sequelize = new Sequelize(env.DB_NAME, env.DB_USER, env.DB_PASSWORD
 
 export async function connectDatabase(): Promise<void> {
   await sequelize.authenticate()
-  logger.info('Connexion MySQL établie.')
+  logger.info('Connexion PostgreSQL établie.')
 }
 
 export async function disconnectDatabase(): Promise<void> {
